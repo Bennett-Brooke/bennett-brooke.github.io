@@ -3,167 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brooke E. Bennett — Portfolio</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-<style>
-:root{--bg:#0f1419;--card:#1a2029;--accent:#4ea1d3;--text:#e6e9ed;--muted:#9aa5b1}
-*{box-sizing:border-box}
-body{margin:0;font:16px/1.5 system-ui,sans-serif;background:var(--bg);color:var(--text)}
-header{padding:2rem 1rem;text-align:center;background:#141a21}
-header h1{margin:0 0 .3rem;font-size:1.7rem}
-header p{margin:0;color:var(--muted)}
-main{max-width:760px;margin:0 auto;padding:1rem}
-section{margin:2rem 0}
-h2{border-bottom:2px solid var(--accent);padding-bottom:.3rem;font-size:1.3rem}
-.card{background:var(--card);border:1px solid #2a323d;border-radius:10px;margin:.8rem 0;overflow:hidden}
-.card>button{width:100%;text-align:left;background:none;border:0;color:var(--text);
-  font:600 1.05rem/1.3 inherit;padding:1rem;cursor:pointer;display:flex;justify-content:space-between;gap:.5rem}
-.card>button span{color:var(--accent)}
-.card .body{display:none;padding:0 1rem 1rem}
-.card.open .body{display:block}
-.card .body h4{margin:.8rem 0 .2rem;color:var(--accent);font-size:.95rem}
-.card .body p{margin:.2rem 0;color:#cfd6de}
-#map{height:320px;border-radius:10px;margin-top:1rem}
-ul{padding-left:1.2rem}
-a{color:var(--accent)}
-footer{text-align:center;color:var(--muted);padding:2rem 1rem;font-size:.85rem}
-.add{color:#e2a93f}
-</style>
+<title>Brooke E. Bennett — Home</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<nav>
+  <a href="index.html" aria-current="page">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Projects</a>
+  <a href="resume.html">Resume</a>
+</nav>
+
 <header>
   <h1>Brooke E. Bennett</h1>
   <p>Graduating GIST senior building reproducible, code-based geospatial &amp; data pipelines</p>
 </header>
 
 <main>
-  <section id="about">
-    <h2>About</h2>
+  <section id="intro">
     <p>I'm a graduating GIST senior at Texas A&amp;M with a programming background and current
     experience in business intelligence. I build reproducible, code-based geospatial and data
-    pipelines — recently mapping transport infrastructure and foreign financing for an NGA
-    analysis brief. I'm focused on roles at the intersection of geospatial analysis, data
-    engineering, and analytics.</p>
+    pipelines across geospatial analysis, data engineering, and analytics.</p>
   </section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-
-    <div class="card">
-      <button onclick="this.parentNode.classList.toggle('open')">
-        Presenting GIS Data (Feb 2025)<span>+</span></button>
-      <div class="body">
-        <h4>Problem</h4>
-        <p>Communicate spatial information clearly to a reader through well-designed maps.</p>
-        <h4>What I did</h4>
-        <p>Created a map highlighting hazards in Washington and Oregon states, ensuring proper
-        element sizing and placement, clear labeling, and readability. Created a second map
-        analyzing trails in Prince William County, Virginia, balancing elements for reader clarity.</p>
-        <h4>What I found</h4>
-        <p class="add">[ADD] — your attached files don't state a findings/takeaway for this project.</p>
-        <h4>What I would do differently</h4>
-        <p class="add">[ADD]</p>
-        <p><em>Map below shows the locations covered by this project.</em></p>
-      </div>
+  <section id="featured">
+    <h2>Featured Project</h2>
+    <div class="featured">
+      <h3>Terrain &amp; Imagery Analysis — GEOG 392 Lab 7</h3>
+      <p class="meta">Python / arcpy raster workflow</p>
+      <p>A reproducible arcpy script that derives a hillshade and slope layer from a 1-arc-second
+      DEM, builds an RGB composite from Landsat 5 bands, and computes an NDVI raster.</p>
+      <a class="btn" href="project-1.html">View project →</a>
     </div>
-
-    <div class="card">
-      <button onclick="this.parentNode.classList.toggle('open')">
-        Terrain &amp; Imagery Analysis — GEOG 392 Lab 7<span>+</span></button>
-      <div class="body">
-        <h4>Problem</h4>
-        <p>Derive terrain and vegetation products from a DEM and Landsat imagery using a
-        reproducible script.</p>
-        <h4>What I did</h4>
-        <p>Wrote a Python/arcpy script to generate a hillshade and slope layer from a 1-arc-second
-        DEM, built an RGB composite from Landsat 5 bands, and computed an NDVI raster.</p>
-        <h4>What I found</h4>
-        <p class="add">[ADD] — no written findings included in the attached file.</p>
-        <h4>What I would do differently</h4>
-        <p class="add">[ADD]</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <button onclick="this.parentNode.classList.toggle('open')">
-        Kaibab Deer System Dynamics Model — GEOG 467 Lab 8<span>+</span></button>
-      <div class="body">
-        <h4>Problem</h4>
-        <p>Model deer population dynamics against forage (standing biomass) and predation over
-        1900–1940.</p>
-        <h4>What I did</h4>
-        <p>Built fourth and fifth Vensim models of the Kaibab deer case study, adding equations for
-        forage consumption, biomass productivity/decay, net birth rate, and predation; the fifth
-        model added an old-biomass nutrition factor to the forage-needs calculation.</p>
-        <h4>What I found</h4>
-        <p class="add">[ADD] — the attached file lists equations and figures but no written
-        conclusion.</p>
-        <h4>What I would do differently</h4>
-        <p class="add">[ADD]</p>
-      </div>
-    </div>
-
-    <div id="map"></div>
-    <!-- No ArcGIS Online / StoryMap link was provided. [ADD] iframe here if you share one. -->
-  </section>
-
-  <section id="resume">
-    <h2>Resume</h2>
-    <p><strong>Education</strong><br>
-    Texas A&amp;M University (Jan 2022 – Present)<br>
-    B.S. in Geographic Information Science and Technology</p>
-    <p><strong>Technical Skills</strong></p>
-    <ul>
-      <li>Languages: C++, C#, DAX, Java, Javascript, Lua, Python, R, SQL</li>
-      <li>Tools: ArcGIS Pro, ArcGIS Online, Laserfiche, Linux, Microsoft Fabric, Microsoft Office,
-      Power Automate, Power BI, Vensim</li>
-    </ul>
-    <p><strong>Experience</strong></p>
-    <ul>
-      <li><strong>Business Intelligence Intern</strong> — MAC Pizza, College Station, TX
-      (Aug 2025 – Present). Managed BI data from 100+ Domino's locations in Fabric, focusing on
-      data ingestion through pipelines and Dataflows used in Power BI reports for leadership,
-      operations, and stores. Developed business processes, workflows, and forms in Laserfiche to
-      automate administrative tasks.</li>
-      <li><strong>Lead Programming Instructor</strong> — Code Ninjas, College Station, TX
-      (Aug 2019 – Aug 2025). Taught JavaScript, Lua, C#, Python, HTML, CSS, and Makecode Arcade
-      across 800+ sessions, in person and virtual. Authored progress reports and communicated with
-      guardians.</li>
-    </ul>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:bennett.brooke.07@gmail.com">bennett.brooke.07@gmail.com</a></p>
-    <p>Phone: (979) 571-9242<br>College Station, Texas</p>
   </section>
 </main>
 
-<footer>© <span id="y"></span> Brooke E. Bennett</footer>
+<footer>
+  <p>Email: <a href="mailto:bennett.brooke.07@gmail.com">bennett.brooke.07@gmail.com</a></p>
+  <p>© <span id="y"></span> Brooke E. Bennett</p>
+</footer>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-document.getElementById('y').textContent = new Date().getFullYear();
-
-// Map data for the "Presenting GIS Data" project.
-// NOTE: your files name the places but give no coordinates, so these are
-// placeholder state/county centroids. [ADD] replace with your real coordinates.
-var points = [
-  {name:"Hazards map — Washington", info:"Hazards in Washington state [ADD exact location]", lat:47.4, lng:-120.5},
-  {name:"Hazards map — Oregon",     info:"Hazards in Oregon state [ADD exact location]",     lat:43.9, lng:-120.6},
-  {name:"Trails — Prince William County, VA", info:"Trail analysis map [ADD exact location]", lat:38.7, lng:-77.5}
-];
-
-var map = L.map('map');
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
-  {attribution:'Tiles © Esri'}).addTo(map);
-
-var group = L.featureGroup();
-points.forEach(function(p){
-  L.marker([p.lat, p.lng]).bindPopup('<strong>'+p.name+'</strong><br>'+p.info).addTo(group);
-});
-group.addTo(map);
-map.fitBounds(group.getBounds().pad(0.3));
-</script>
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
 </body>
 </html>
