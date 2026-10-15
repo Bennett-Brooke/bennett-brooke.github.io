@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brooke E. Bennett — Terrain &amp; Imagery Analysis</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Projects</a>
+  <a href="resume.html">Resume</a>
+</nav>
+
+<header>
+  <h1>Terrain &amp; Imagery Analysis</h1>
+  <p>GEOG 392 Lab 7 — Python / arcpy raster workflow</p>
+</header>
+
+<main>
+  <section id="problem">
+    <h2>Problem</h2>
+    <p>Derive terrain and vegetation products from elevation and satellite imagery using a single,
+    reproducible script: a hillshade and slope layer from a DEM, an RGB composite from Landsat
+    bands, and an NDVI raster. [1]</p>
+  </section>
+
+  <section id="role">
+    <h2>My role</h2>
+    <p class="add">[ADD] — the assignment file does not state your specific role on a team. If this
+    was individual work, say "Sole author; wrote and ran the full arcpy script." [1]</p>
+    <p>Repository: <a href="https://github.com/Bennett-Brooke/BEB-GEOG392-Lab">
+    github.com/Bennett-Brooke/BEB-GEOG392-Lab</a> [1]</p>
+  </section>
+
+  <section id="data">
+    <h2>Data &amp; method</h2>
+    <p><strong>Data:</strong></p>
+    <ul>
+      <li>DEM: <code>n30_w097_1arc_v3.tif</code> (1-arc-second DEM) [1]</li>
+      <li>Landsat 5 scene <code>LT05_L2SP_026039_20110803</code> — surface-reflectance bands B1
+      (blue), B2 (green), B3 (red), B4 (NIR) [1]</li>
+    </ul>
+    <p><strong>Method (arcpy):</strong></p>
+    <ul>
+      <li>Set <code>arcpy.env.overwriteOutput = True</code> and built output paths relative to the
+      script directory for reproducibility. [1]</li>
+      <li>Generated a hillshade with <code>arcpy.ddd.HillShade</code> (azimuth 315, altitude 45,
+      no shadows, z-factor 1). [1]</li>
+      <li>Generated a slope layer in degrees with <code>arcpy.ddd.Slope</code>. [1]</li>
+      <li>Built an RGB composite with <code>arcpy.management.CompositeBands</code>. [1]</li>
+      <li>Computed NDVI as <code>((NIR − Red) / (NIR + Red)) × 100 + 100</code> and saved it as a
+      raster. [1]</li>
+    </ul>
+  </section>
+
+  <section id="figures">
+    <h2>Figures</h2>
+    <p>Outputs produced by the script: DEM, hillshade, slope, RGB composite, and NDVI (before and
+    after colormap). [1]</p>
+    <p class="add">[ADD] — insert your output images here, e.g.:<br>
+    &lt;img src="hillshade.png" alt="Hillshade output"&gt;<br>
+    This assignment has no point coordinates, so no Leaflet map is included.</p>
+  </section>
+
+  <section id="found">
+    <h2>What I found</h2>
+    <p class="add">[ADD] — the assignment file lists code and output labels but no written findings
+    or interpretation. [1]</p>
+  </section>
+
+  <section id="different">
+    <h2>What I would do differently</h2>
+    <p class="add">[ADD] — not stated in the file.</p>
+    <p class="add">[ADD] (optional, if you want to note it yourself) — in the composite step the
+    script passes <code>[red_band, green_band, red_band]</code>, which repeats the red band instead
+    of using the blue band. [1]</p>
+  </section>
+</main>
+
+<footer>
+  <p>Email: <a href="mailto:bennett.brooke.07@gmail.com">bennett.brooke.07@gmail.com</a></p>
+  <p>© <span id="y"></span> Brooke E. Bennett</p>
+</footer>
+
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
