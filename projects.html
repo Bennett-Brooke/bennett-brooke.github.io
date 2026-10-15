@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brooke E. Bennett — Projects</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html" aria-current="page">Projects</a>
+  <a href="resume.html">Resume</a>
+</nav>
+
+<header>
+  <h1>Projects</h1>
+  <p>Selected geospatial, modeling, and programming work</p>
+</header>
+
+<main>
+  <section id="projects">
+    <div class="cards">
+
+      <a class="card" href="project-1.html">
+        <h3>Terrain &amp; Imagery Analysis — GEOG 392 Lab 7</h3>
+        <p class="meta">Python / arcpy raster workflow</p>
+        <p>A reproducible arcpy script deriving a hillshade and slope layer from a 1-arc-second
+        DEM, an RGB composite from Landsat 5 bands, and an NDVI raster. View the full write-up →</p>
+      </a>
+
+      <div class="card">
+        <h3>Hillshade &amp; Hypsometric Cartography — GEOG 395 Lab 7</h3>
+        <p class="meta">Cartographic design in ArcGIS Pro</p>
+        <p>Designed a poster-quality topographic map using a multidirectional hillshade (z-value 2),
+        a percent-clip stretch for the hypsometric tint, and 50-ft contours with 250-ft index
+        contours for a park audience familiar with the area. [2]</p>
+      </div>
+
+      <div class="card">
+        <h3>Kaibab Deer System Dynamics Model — GEOG 467 Lab 8</h3>
+        <p class="meta">System-dynamics modeling in Vensim</p>
+        <p>Built fourth and fifth Vensim models of the Kaibab deer case study (1900–1940),
+        modeling deer population against forage biomass and predation; the fifth model added an
+        old-biomass nutrition factor to the forage-needs calculation. [3]</p>
+      </div>
+
+      <div class="card">
+        <h3>Presenting GIS Data</h3>
+        <p class="meta">Cartographic design · February 2025</p>
+        <p>Created a hazards map for Washington and Oregon and a trails map for Prince William
+        County, Virginia, focusing on element placement, clear labeling, and reader clarity. [5]</p>
+      </div>
+
+      <div class="card">
+        <h3>Crazy Eights</h3>
+        <p class="meta">C++ · April 2024</p>
+        <p>Developed a text-based C++ version of Crazy Eights with deck handling, player
+        interactions, and game logic, using object-oriented principles and error handling for
+        invalid inputs and deck file operations. [5]</p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Email: <a href="mailto:bennett.brooke.07@gmail.com">bennett.brooke.07@gmail.com</a></p>
+  <p>© <span id="y"></span> Brooke E. Bennett</p>
+</footer>
+
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
