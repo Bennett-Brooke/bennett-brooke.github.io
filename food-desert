@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brooke Bennett — Food Desert Analysis &amp; Solutions</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .figure-grid{display:grid;gap:1.2rem;margin-top:1rem}
+  .figure-grid figure{margin:0}
+  .figure-grid img{width:100%;height:auto;border:1px solid var(--border);border-radius:10px;display:block}
+  .figure-grid figcaption{color:var(--muted);font-size:.9rem;margin-top:.4rem}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Projects</a>
+  <a href="resume.html">Resume</a>
+</nav>
+<header>
+  <h1>Food Desert Analysis &amp; Solutions</h1>
+  <p>GEOG 392 — ArcGIS Pro Python Toolbox</p>
+</header>
+<main>
+  <section id="problem">
+    <h2>Problem</h2>
+    <p>Roughly 12.5% of Texas is considered a food desert, an area without sufficient access to
+    grocery stores, affecting both rural counties and major cities like Dallas and Houston. Our
+    team built a custom ArcGIS Pro Python toolbox that identifies food deserts in any Texas county
+    the user names and recommends the best locations for new grocery stores. San Patricio County
+    is used as the worked example.</p>
+  </section>
+  <section id="role">
+    <h2>My role</h2>
+    <p class="add">Member of a seven-person team. Wrote an automated geoprocessing workflow that
+    clips Census block groups and grocery store locations to a user-selected county. Developed a
+    process to rank candidate sites using population density and distance to the nearest grocery
+    store and exported the top results to a county-specific geodatabase.
+  </section>
+  <section id="data">
+    <h2>Data &amp; method</h2>
+    <p><strong>Data:</strong></p>
+    <ul>
+      <li>Esri <em>USA 2020 Census Population Characteristics</em> — block-group polygons with
+      population (<code>P0010001</code>) and county attributes</li>
+      <li><em>OSM_NA_Shops</em> — OpenStreetMap shops for North America, filtered in a setup
+      notebook with <code>shop IN ('supermarket', 'convenience')</code> into a
+      <code>GroceryStores</code> feature class</li>
+    </ul>
+    <p><strong>Method (arcpy Python toolbox):</strong></p>
+    <ul>
+      <li>Takes a single input, the county name (e.g. <code>San Patricio County</code>), and writes
+      all results to a per-county output geodatabase.</li>
+      <li>Clipped block groups and grocery stores to the county with
+      <code>arcpy.analysis.Clip</code>.</li>
+      <li>Buffered every store by 1.6 km (the standard food-desert radius) with
+      <code>arcpy.analysis.Buffer</code>, then used <code>arcpy.analysis.Erase</code> to remove
+      the buffers from the county and leave the food-desert area.</li>
+      <li>Generated block-group centroids with <code>arcpy.management.FeatureToPoint</code>.</li>
+      <li>Calculated population density (people per km²) and the distance from each centroid to
+      the nearest store with <code>arcpy.analysis.GenerateNearTable</code>.</li>
+      <li>Computed an urgency score as <code>distance × population density</code>, so the highest
+      scores are dense block groups far from any store.</li>
+      <li>Exported three candidate layers: every food-desert block group, the top 3 by score,
+      and the single top-scoring site.</li>
+    </ul>
+  </section>
+  <section id="results">
+    <h2>Results</h2>
+    <p>In San Patricio County, the three highest-scoring sites all fall in Mathis. The largest
+    clusters of underserved block groups sit along the coast around Ingleside and Aransas Pass,
+    with lower-priority rural gaps between the county's towns.</p>
+    <p>Known limitations: the score uses only density and straight-line distance (no income,
+    vehicle access, or road-network travel time), and the tool runs one county at a time.</p>
+  </section>
+  <section id="figures">
+    <h2>Figures</h2>
+    <p>Tool output for San Patricio County, showing the food-desert block groups, 1.6 km store
+    buffers, and each candidate layer.</p>
+    <div class="figure-grid">
+      <figure>
+        <img src="Full_Candidates_Food_Desert.png" alt="Map of San Patricio County showing all candidate grocery store locations">
+        <figcaption>Full candidate results: one recommended site in every food-desert block group.</figcaption>
+      </figure>
+      <figure>
+        <img src="Top3_Candidates_Food_Desert.png" alt="Map of San Patricio County showing the top 3 candidate grocery store locations">
+        <figcaption>Top 3 candidates ranked by urgency score.</figcaption>
+      </figure>
+      <figure>
+        <img src="Top1_Candidate_Food_Desert.png" alt="Map of San Patricio County showing the single top candidate grocery store location">
+        <figcaption>Top 1 candidate: the highest-scoring site in the county.</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section id="links">
+    <h2>Links</h2>
+    <ul>
+      <li><a href="https://github.com/Bennett-Brooke/GEOG392_FinalProject_Group11">GitHub repository</a> (toolbox, notebook, and project package)</li>
+    </ul>
+  </section>
+</main>
+<footer>
+  <p>Email: <a href="mailto:bennett.brooke.07@gmail.com">bennett.brooke.07@gmail.com</a></p>
+  <p>© <span id="y"></span> Brooke Bennett</p>
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
