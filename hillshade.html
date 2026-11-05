@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brooke Bennett — Hillshade &amp; Hypsometric Cartography</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .figure-grid{display:grid;gap:1.2rem;margin-top:1rem}
+  .figure-grid figure{margin:0}
+  .figure-grid img{width:100%;height:auto;border:1px solid var(--border);border-radius:10px;display:block}
+  .figure-grid figcaption{color:var(--muted);font-size:.9rem;margin-top:.4rem}
+  .figure-grid video{width:100%;height:auto;border:1px solid var(--border);border-radius:10px;display:block}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Projects</a>
+  <a href="resume.html">Resume</a>
+</nav>
+<header>
+  <h1>Hillshade &amp; Hypsometric Cartography</h1>
+  <p>GEOG 395 — Topographic poster design in ArcGIS Pro</p>
+</header>
+<main>
+  <section id="problem">
+    <h2>Problem</h2>
+    <p>Design a poster-quality topographic map of Crater Lake intended to be printed and used by
+    park enthusiasts who are familiar with the area and need precise information retrieval,
+    balancing terrain detail and readability at a scale of 1:24,000.</p>
+  </section>
+  <section id="role">
+    <h2>My role</h2>
+    <p class="add"> Sole author; made all cartographic design decisions and produced the map.</p>
+  </section>
+  <section id="data">
+    <h2>Data &amp; method</h2>
+    <p><strong>Method &amp; design decisions:</strong></p>
+    <ul>
+      <li>Chose a <strong>multidirectional hillshade</strong> over a traditional single-direction
+      hillshade because it draws illumination from six directions, providing higher detail and
+      handling shadows and oversaturated areas better. </li>
+      <li>Selected a <strong>z-value of 2</strong> after testing values of 1, 1.25, 1.5, 1.75, and
+      2, as it provided the best vertical contrast for the area. </li>
+      <li>Applied a <strong>percent clip stretch</strong> to the DEM for the hypsometric tint,
+      which excludes extreme values/outliers so only the most important values are included,
+      allowing more detail and higher contrast. </li>
+      <li>Used a <strong>50-foot contour interval</strong> to provide precise elevation breaks
+      without overcrowding areas of rapid elevation change at the 1:24,000 scale.</li>
+      <li>Used a <strong>250-foot index contour interval</strong> (every 5th contour), with a line
+      width of 0.5 for intermediate contours and 1.25 for index contours, so index contours pop
+      while keeping every line visible — especially around Crater Lake where elevation changes
+      quickly. </li>
+    </ul>
+  </section>
+  <section id="figures">
+    <h2>Figures</h2>
+    <p>Final poster and an animated flyover of the Crater Lake area.</p>
+    <div class="figure-grid">
+      <figure>
+        <img src="CraterLakeMap_Hypsometric.png" alt="Crater Lake topography and bathymetry poster with hypsometric tint, hillshade, and contours">
+        <figcaption>Crater Lake Topography and Bathymetry poster — multidirectional hillshade
+        (z-value 2), percent-clip hypsometric tint, 50-ft contours with 250-ft index contours. </figcaption>
+      </figure>
+      <figure>
+        <video controls>
+          <source src="BennettBrooke_CraterLake.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <figcaption>Animated flyover of the Crater Lake map.</figcaption>
+      </figure>
+    </div>
+  </section>
+  
+</main>
+<footer>
+  <p>Email: <a href="mailto:bennett.brooke.07@gmail.com">bennett.brooke.07@gmail.com</a></p>
+  <p>© <span id="y"></span> Brooke Bennett</p>
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
