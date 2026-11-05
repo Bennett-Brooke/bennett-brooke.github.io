@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brooke Bennett — Kaibab Deer System Dynamics Model</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .figure-grid{display:grid;gap:1.2rem;margin-top:1rem}
+  .figure-grid figure{margin:0}
+  .figure-grid img{width:100%;height:auto;border:1px solid var(--border);border-radius:10px;display:block;background:#fff}
+  .figure-grid figcaption{color:var(--muted);font-size:.9rem;margin-top:.4rem}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Projects</a>
+  <a href="resume.html">Resume</a>
+</nav>
+<header>
+  <h1>Kaibab Deer System Dynamics Model</h1>
+  <p>GEOG 467 — System-dynamics modeling in Vensim</p>
+</header>
+<main>
+  <section id="problem">
+    <h2>Problem</h2>
+    <p>The Kaibab Plateau case study is a classic example of overshoot and collapse: after
+    predators were removed in the early 1900s, the deer population exploded, overgrazed its food
+    supply, and then crashed. The goal was to model that feedback between deer, predators, and
+    forage biomass from 1900 to 1940, and to test how adding an old-biomass nutrition factor
+    changes the outcome.</p>
+  </section>
+  <section id="role">
+    <h2>My role</h2>
+    <p>Sole author; built and ran both models in Vensim.</p>
+  </section>
+  <section id="data">
+    <h2>Model structure &amp; method</h2>
+    <p><strong>Setup:</strong></p>
+    <ul>
+      <li>Simulated 1900–1940 with a 0.25-year time step.</li>
+      <li>Two stocks: <code>Deer Population</code> (starting at 4,000) and
+      <code>Standing Biomass</code> (starting at 50,000 MT), on an 800 KA area.</li>
+      <li>Predators held at 50 until 1910, then reduced to zero by 1920 through a time
+      lookup.</li>
+    </ul>
+    <p><strong>Fourth model:</strong></p>
+    <ul>
+      <li>Deer deaths from predation driven by a lookup on deer density (deer killed per
+      predator per year).</li>
+      <li>Deer net birth rate driven by a lookup on the fraction of forage needs met.</li>
+      <li>Biomass growth limited by a fullness effect, with a 0.1/year decay rate and 75% of new
+      biomass within reach of deer.</li>
+      <li>When new growth falls short, deer consume old standing biomass in proportion to how
+      much of the original biomass remains.</li>
+    </ul>
+    <p><strong>Fifth model:</strong></p>
+    <ul>
+      <li>Added an <code>old biomass nutrition factor</code> of 0.25, so old biomass counts for
+      only a quarter of the nutrition of new growth.</li>
+      <li>Birth rate now uses an <code>equivalent fr of forage needs met</code>: the fraction met
+      from new growth plus the old-biomass fraction weighted by that factor.</li>
+    </ul>
+  </section>
+  <section id="results">
+    <h2>Results</h2>
+    <p>Both models reproduce the overshoot and collapse. Once predators drop out, the deer
+    population climbs sharply and peaks around 1922–1923, then declines through 1940 as forage
+    is depleted. In the fourth model the peak reaches roughly 87,000 deer, and consumption of old
+    biomass spikes alongside it. The fifth model peaks higher, at about 116,000 deer, and then
+    falls to around 20,000 by 1940.</p>
+  </section>
+  <section id="figures">
+    <h2>Figures</h2>
+    <p>Stock-and-flow diagrams and simulation output from Vensim.</p>
+    <div class="figure-grid">
+      <figure>
+        <img src="Fourth_Model_Kaibab_Deer.png" alt="Vensim stock-and-flow diagram of the fourth Kaibab deer model">
+        <figcaption>Fourth model stock-and-flow diagram.</figcaption>
+      </figure>
+      <figure>
+        <img src="Fourth_Model_Population_Kaibab_Deer.png" alt="Graph of deer population and number of predators from 1900 to 1940, fourth model">
+        <figcaption>Fourth model: deer population and number of predators, 1900–1940.</figcaption>
+      </figure>
+      <figure>
+        <img src="Fourth_Model_Biomass_Kaibab_Deer.png" alt="Stacked graph of forage consumption and consumption of old biomass, fourth model">
+        <figcaption>Fourth model: forage consumption and consumption of old biomass (MT/year).</figcaption>
+      </figure>
+      <figure>
+        <img src="Fifth_Model_Kaibab_Deer.png" alt="Vensim stock-and-flow diagram of the fifth Kaibab deer model">
+        <figcaption>Fifth model stock-and-flow diagram, adding the old-biomass nutrition factor.</figcaption>
+      </figure>
+      <figure>
+        <img src="Fifth_Model_Population_Kaibab_Deer.png" alt="Graph of deer population and number of predators from 1900 to 1940, fifth model">
+        <figcaption>Fifth model: deer population and number of predators, 1900–1940.</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>Email: <a href="mailto:bennett.brooke.07@gmail.com">bennett.brooke.07@gmail.com</a></p>
+  <p>© <span id="y"></span> Brooke Bennett</p>
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
