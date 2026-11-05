@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brooke Bennett — Spatiotemporal Visualization of Hurricanes</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .figure-grid{display:grid;gap:1.2rem;margin-top:1rem}
+  .figure-grid figure{margin:0}
+  .figure-grid img,.figure-grid video{width:100%;height:auto;border:1px solid var(--border);border-radius:10px;display:block}
+  .figure-grid img.narrow{max-width:320px}
+  .figure-grid figcaption{color:var(--muted);font-size:.9rem;margin-top:.4rem}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Projects</a>
+  <a href="resume.html">Resume</a>
+</nav>
+<header>
+  <h1>Spatiotemporal Visualization of Hurricanes</h1>
+  <p>GEOG 395 — Thematic cartography in ArcGIS Pro</p>
+</header>
+<main>
+  <section id="problem">
+    <h2>Problem</h2>
+    <p>Hurricane tracks change in both space and time, which makes them hard to show on a single
+    static map. The goal was to visualize Atlantic hurricane paths and intensity from 1950 to 2023
+    in a way that lets readers compare decades at a glance, and to animate an individual storm's
+    track over time.</p>
+  </section>
+  <section id="role">
+    <h2>My role</h2>
+    <p>Sole author; designed the symbology, layout, and animation in ArcGIS Pro.</p>
+  </section>
+  <section id="data">
+    <h2>Data &amp; method</h2>
+    <p><strong>Data:</strong></p>
+    <ul>
+      <li><code>Hurricanes_1852_2023</code> — Atlantic storm track segments with storm
+      classification over time</li>
+    </ul>
+    <p><strong>Method (ArcGIS Pro):</strong></p>
+    <ul>
+      <li>Wrote an Arcade expression to classify each track segment into nine classes, from
+      Category 5 hurricane down to tropical depression, low-pressure, and extratropical
+      cyclone.</li>
+      <li>Symbolized the classes with unique values on a sequential dark-red-to-yellow color
+      scheme, with line width scaled to intensity so the strongest segments stand out.</li>
+      <li>Used dashed lines to separate non-tropical systems: short dashes for low-pressure and
+      long dashes for extratropical cyclones.</li>
+      <li>Built a small-multiples layout with one map frame per decade (1950–2023) sharing the
+      same extent, symbology, and legend, so differences between panels reflect the data rather
+      than the design.</li>
+      <li>Enabled time on the layer and used the time slider to animate Hurricane Katrina's track.</li>
+    </ul>
+  </section>
+  <section id="figures">
+    <h2>Figures</h2>
+    <div class="figure-grid">
+      <figure>
+        <img src="Small_Multiples_Hurricanes.jpg" alt="Small-multiples map of Atlantic hurricane tracks by decade from 1950 to 2023, colored and sized by storm classification">
+        <figcaption>Small-multiples map of Atlantic hurricane tracks by decade, 1950–2023.</figcaption>
+      </figure>
+      <figure>
+        <video src="Katrina_Animation_Hurricanes.mp4" autoplay loop muted playsinline controls
+          aria-label="Animation of Hurricane Katrina's track across the Gulf of Mexico"></video>
+        <figcaption>Time-enabled animation of Hurricane Katrina's track.</figcaption>
+      </figure>
+      <figure>
+        <img class="narrow" src="Symbology_Pane_Hurricanes.png" alt="ArcGIS Pro symbology pane showing nine custom storm classes">
+        <figcaption>Symbology pane with the nine Arcade-derived storm classes.</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+<footer>
+  <p>Email: <a href="mailto:bennett.brooke.07@gmail.com">bennett.brooke.07@gmail.com</a></p>
+  <p>© <span id="y"></span> Brooke Bennett</p>
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
